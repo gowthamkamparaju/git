@@ -1,0 +1,30 @@
+public class Bike {
+	String brand ;
+	String name ; 
+	int price ;
+	public static void main(String[] args) {
+		Bike B1=new Bike();
+		B1.brand="yamaha";
+		B1.name="mt_15";
+		B1.price=18000;
+		Bike B2=new Bike();
+		B2.brand="ktm";
+		B2.name="duke";
+		B2.price=220000;
+		Bike B3=new Bike();
+		B3.brand="yamaha";
+		B3.name="r15";
+		B3.price=210000;
+		System.out.println(B1.brand);
+		System.out.println(B1.name);
+		System.out.println(B1.price);
+		System.out.println(B2.brand);
+		System.out.println(B2.name);
+		System.out.println(B2.price); 
+		System.out.println(B3.brand);
+		System.out.println(B3.name);
+		System.out.println(B3.price);
+		
+	}
+
+}
