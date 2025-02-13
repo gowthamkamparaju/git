@@ -6,6 +6,9 @@ phases:
       nodejs: 18  # Change to match your project
   pre_build:
     commands:
+      - echo "checking working directory"...
+      - pwd
+      - ls -la
       - echo Installing dependencies...
       - npm install  # Adjust for your project (e.g., mvn install for Java)
   build:
