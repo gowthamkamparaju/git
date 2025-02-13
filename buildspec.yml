@@ -2,23 +2,14 @@ version: 0.2
  
 phases:
   install:
-    runtime-versions:
-      nodejs: 18  # Change to match your project
-  pre_build:
     commands:
-      - echo "checking working directory"...
-      - pwd
-      - ls -la
-      - echo Installing dependencies...
-      - npm install  # Adjust for your project (e.g., mvn install for Java)
+      - echo "No dependencies to install. This is just a test."
   build:
     commands:
-      - echo Building the application...
-      - npm run build  # Replace with your actual build command
+      - echo "Running the build phase. (No actual build commands.)"
   post_build:
     commands:
-      - echo Build completed successfully.
- 
+      - echo "Build completed successfully!"
 artifacts:
   files:
     - '**/*'
