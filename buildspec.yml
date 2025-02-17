@@ -7,9 +7,12 @@ phases:
   build:
     commands:
       - echo "Running the build phase. (No actual build commands.)"
+      - echo "this is test deployment" > test-deploy.txt 
   post_build:
     commands:
+      - echo "Uploading to s3..."
+      - aws s3 cp test-deploy.txt s3://my-github1-bucket/
       - echo "Build completed successfully!"
 artifacts:
   files:
-    - '**/*'
+    - test-deploy.txt
