@@ -12,8 +12,8 @@ phases:
   pre_build:
     commands:
       - echo "Configuring AWS CLI..."
-      - aws configure set aws_access_key_id $AWS_ACCESS_KEY_IDS
-      - aws configure set aws_secret_access_key $AWS_SECRET_ACCESS_KEYS
+      - aws configure set AWS_ACCESS_KEY_IDS: $AWS_ACCESS_KEY_IDS
+      - aws configure set AWS_SECRET_ACCESS_KEYS: $AWS_SECRET_ACCESS_KEYS
       - aws configure set output json
       - echo "AWS CLI configured successfully."
  
