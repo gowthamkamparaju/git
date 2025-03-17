@@ -2,10 +2,21 @@ version: 0.2
  
 phases:
   install:
-     # python: 3.9  # Ensures Python is available for AWS CLI
+    runtime-versions:
+      python: 3.9  # Ensure Python is available for AWS CLI
     commands:
       - echo "Installing AWS CLI if not already present..."
-      - pip install awscli --upgrade --user  # Install/upgrade AWS CLI
+      - pip install awscli --upgrade --user  # Install or upgrade AWS CLI
+      - aws --version  # Check AWS CLI version
+ 
+  pre_build:
+    commands:
+      - echo "Configuring AWS CLI..."
+      - aws configure set aws_access_key_id ${secrets.AWS_ACCESS_KEY_IDS}
+      - aws configure set aws_secret_access_key ${secrets.AWS_SECRET_ACCESS_KEYS}
+      - aws configure set output json
+      - echo "AWS CLI configured successfully."
+ 
   build:
     commands:
       - echo "Launching a Free Tier EC2 instance..."
@@ -15,11 +26,14 @@ phases:
           --image-id ami-05c179eced2eb9b5b \ 
           --instance-type t2.micro \       
           --count 1
-      - echo "EC2 instance launch initiated!"
+          --tag-specifications 'ResourceType=instance,Tags=[{Key=Name,Value=CodeBuild-EC2}]'
+      - echo "EC2 instance launch initiated."
+ 
   post_build:
     commands:
-      - echo "Build completed on $(date)"
+      - echo "Build completed on `date`"
  
 artifacts:
   files:
-    - "**/*"  # Optional: Include artifacts if needed
+    - '**/*'  # Optional: Include artifacts if needed
+ 
