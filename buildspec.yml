@@ -10,7 +10,7 @@ phases:
   build:
     commands:
       - echo "Launching a Free Tier EC2 instance..."
-      -dnf --version
+       -dnf --version
       - |
         aws ec2 run-instances \
           --image-id ami-05c179eced2eb9b5b \ # Free Tier Amazon Linux 2 AMI (ap-south-1)
