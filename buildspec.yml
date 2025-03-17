@@ -1,18 +1,24 @@
 version: 0.2
  
-phases:
-  install:
+runtime-versions:
+      python: 3.9  # Ensures Python is available for AWS CLI
     commands:
-      - echo "No dependencies to install. This is just a test."
+      - echo "Installing AWS CLI if not already present..."
+      - pip install awscli --upgrade --user  # Install/upgrade AWS CLI
   build:
     commands:
-      - echo "Running the build phase. (No actual build commands.)"
-      - echo "this is test deployment" > test-deploy.txt 
+      - echo "Launching a Free Tier EC2 instance..."
+      - |
+        aws ec2 run-instances \
+          --image-id ami-05c179eced2eb9b5b \ # Free Tier Amazon Linux 2 AMI (us-east-1)
+          --instance-type t2.micro \         # Free Tier eligible instance type
+          --tag-specifications 'ResourceType=instance,Tags=[{Key=Name,Value=FreeTier-EC2}]' \
+          --count 1
+      - echo "EC2 instance launch initiated!"
   post_build:
     commands:
-      - echo "Uploading to s3..."
-      - aws s3 cp test-deploy.txt s3://my-github1-bucket/
-      - echo "Build completed successfully!"
+      - echo "Build completed on `date`"
+ 
 artifacts:
   files:
-    - test-deploy.txt
+    - '**/*'  # Optional: Include artifacts if needed
