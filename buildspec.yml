@@ -2,8 +2,7 @@ version: 0.2
  
 phases:
   install:
-    runtime-versions:
-      python: 3.9  # Ensures Python is available for AWS CLI
+     # python: 3.9  # Ensures Python is available for AWS CLI
     commands:
       - echo "Installing AWS CLI if not already present..."
       - pip install awscli --upgrade --user  # Install/upgrade AWS CLI
