@@ -1,6 +1,8 @@
 version: 0.2
  
-runtime-versions:
+phases:
+  install:
+    runtime-versions:
       python: 3.9  # Ensures Python is available for AWS CLI
     commands:
       - echo "Installing AWS CLI if not already present..."
@@ -10,9 +12,9 @@ runtime-versions:
       - echo "Launching a Free Tier EC2 instance..."
       - |
         aws ec2 run-instances \
-          --image-id ami-05c179eced2eb9b5b \ # Free Tier Amazon Linux 2 AMI (us-east-1)
+          --image-id ami-05c179eced2eb9b5b \ # Free Tier Amazon Linux 2 AMI (ap-south-1)
           --instance-type t2.micro \         # Free Tier eligible instance type
-          --tag-specifications 'ResourceType=instance,Tags=[{Key=Name,Value=FreeTier-EC2}]' \
+          #--tag-specifications 'ResourceType=instance,Tags=[{Key=Name,Value=FreeTier-EC2}]' \
           --count 1
       - echo "EC2 instance launch initiated!"
   post_build:
