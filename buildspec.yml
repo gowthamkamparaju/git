@@ -10,11 +10,11 @@ phases:
   build:
     commands:
       - echo "Launching a Free Tier EC2 instance..."
+      -dnf --version
       - |
         aws ec2 run-instances \
           --image-id ami-05c179eced2eb9b5b \ # Free Tier Amazon Linux 2 AMI (ap-south-1)
           --instance-type t2.micro \         # Free Tier eligible instance type
-          #--tag-specifications 'ResourceType=instance,Tags=[{Key=Name,Value=FreeTier-EC2}]' 
           --count 1
       - echo "EC2 instance launch initiated!"
   post_build:
