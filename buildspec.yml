@@ -9,14 +9,14 @@ phases:
       - pip install awscli --upgrade --user  # Install or upgrade AWS CLI
       - aws --version  # Check AWS CLI version
  
-  pre_build:
-    commands:
-      - echo "Configuring AWS CLI..."
-      - aws configure set AWS_ACCESS_KEY_ID AKIAXEVXYWZ7HI2JDN6Z
-      - aws configure set AWS_SECRET_ACCESS_KEY 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
-      - aws configure set region ap-south-1
-      - aws configure set output json
-      - echo "AWS CLI configured successfully."
+  #pre_build:
+    #commands:
+      #- echo "Configuring AWS CLI..."
+      #- aws configure set AWS_ACCESS_KEY_ID
+      #- aws configure set AWS_SECRET_ACCESS_KEY 
+      #- aws configure set region ap-south-1
+      #- aws configure set output json
+      #- echo "AWS CLI configured successfully."
  
   build:
     commands:
