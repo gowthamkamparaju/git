@@ -8,6 +8,11 @@ phases:
       - echo "Installing AWS CLI if not already present..."
       - pip install awscli --upgrade --user  # Install or upgrade AWS CLI
       - aws --version  # Check AWS CLI version
+      - aws configure set region ap-south-1
+      - aws configure set output json
+      - echo "AWS CLI configured successfully."
+      
+
  
   #pre_build:
     #commands:
@@ -23,16 +28,16 @@ phases:
       - echo "Launching a Free Tier EC2 instance..."
       - dnf --version
       - |
-        aws ec2 run-instances \
-          --image-id ami-05c179eced2eb9b5b \ 
-          --instance-type t2.micro \       
-          --count 1
+        aws ec2 run-instances\
+          --image-id ami-05c179eced2eb9b5b\ 
+          --instance-type t2.micro\       
+          --count 1\
           --tag-specifications 'ResourceType=instance,Tags=[{Key=Name,Value=CodeBuild-EC2}]'
       - echo "EC2 instance launch initiated."
  
   post_build:
     commands:
-      - echo "Build completed on `date`"
+      - echo "Build completed on $(date)"
  
 artifacts:
   files:
